@@ -11,10 +11,10 @@ class SimpleGraph:
         self.vertex = [None] * size
         
     def AddVertex(self, v):
-        if len(self.vertex) >= self.max_vertex:
-            return
-        new_vertex = Vertex(v)
-        self.vertex.append(new_vertex)
+        for ind in range(self.max_vertex):
+            if self.vertex[ind] is None:
+                self.vertex[ind] = Vertex(v)
+                break
         # ваш код добавления новой вершины 
         # с значением value 
         # в свободное место массива vertex
