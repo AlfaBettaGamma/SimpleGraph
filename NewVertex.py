@@ -2,6 +2,7 @@ class Vertex:
 
     def __init__(self, val):
         self.Value = val
+        self.Hit = False
   
 class SimpleGraph:
 	
