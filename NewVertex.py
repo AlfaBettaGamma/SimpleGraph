@@ -70,7 +70,10 @@ class SimpleGraph:
                 print ("{:4d}".format(j), end ="")
             print()
 
-    def DepthFirstSearch(VFrom, VTo):
+    def DepthFirstSearch(self, VFrom, VTo):
+        # узлы задаются позициями в списке vertex
+        # возвращается список узлов -- путь из VFrom в VTo
+        # или [] если пути нету
         stack = []
         for vertex in self.vertex:
             if vertex:
@@ -98,6 +101,45 @@ class SimpleGraph:
                         VFrom = self.vertex.index(stack[-1])
         
         return stack
-        # узлы задаются позициями в списке vertex
-        # возвращается список узлов -- путь из VFrom в VTo
-        # или [] если пути нету
+
+
+my_graph = SimpleGraph(9)
+my_graph.AddVertex('A')
+my_graph.AddVertex('B')
+my_graph.AddVertex('C')
+my_graph.AddVertex('D')
+my_graph.AddVertex('E')
+my_graph.AddVertex('F')
+my_graph.AddVertex('G')
+my_graph.AddVertex('H')
+my_graph.AddVertex('I')
+my_graph.AddEdge(0,1)
+my_graph.AddEdge(0,3)
+my_graph.AddEdge(1,0)
+my_graph.AddEdge(1,4)
+my_graph.AddEdge(1,2)
+my_graph.AddEdge(2,1)
+my_graph.AddEdge(2,5)
+my_graph.AddEdge(3,0)
+my_graph.AddEdge(3,6)
+my_graph.AddEdge(4,1)
+my_graph.AddEdge(4,7)
+my_graph.AddEdge(5,2)
+my_graph.AddEdge(5,8)
+my_graph.AddEdge(6,3)
+my_graph.AddEdge(6,7)
+my_graph.AddEdge(7,4)
+my_graph.AddEdge(7,6)
+my_graph.AddEdge(7,8)
+my_graph.AddEdge(8,7)
+my_graph.AddEdge(8,5)
+my_graph.AddEdge(0,4)
+my_graph.AddEdge(4,8)
+my_graph.AddEdge(8,4)
+my_graph.AddEdge(4,0)
+#my_graph.RemoveEdge(0, 3)
+#my_graph.RemoveEdge(3, 1)
+my_graph.PrintAllAdjacency()
+path = my_graph.DepthFirstSearch(8, 8)
+for item in path:
+    print(item.Value, ' ', end='')
