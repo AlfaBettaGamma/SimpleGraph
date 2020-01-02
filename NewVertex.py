@@ -101,3 +101,36 @@ class SimpleGraph:
                         VFrom = self.vertex.index(stack[-1])
         
         return stack
+
+    def BreadthFirstSearch(VFrom, VTo):
+        # узлы задаются позициями в списке vertex
+        # возвращается список узлов -- путь из VFrom в VTo
+        # или [] если пути нету
+        if VFrom is VTo:
+            return VFrom
+        if -1 < VFrom < self.max_vertex and -1 < VTo < self.max_vertex:
+            queue = []
+            edges = {} 
+            for i in range(self.max_vertex):
+                self.vertex[i].Hit = False
+            self.vertex[VFrom].Hit = True
+            queue.append(self.vertex[VFrom])
+            while queue:
+                finder = self.vertex.index(queue.pop(0))
+                if self.m_adjacency[finder][VTo] is 1:
+                    queue = []
+                    queue.extend([finder, VTo])
+                    while finder != VFrom:
+                        queue.insert(0, edges[finder])
+                        finder = edges.get(finder)
+                    return queue
+                else:
+                    for i in range(self.max_vertex):
+                        if self.m_adjacency[finder][i] is 1:
+                            if self.vertex[i].Hit is False:
+                                self.vertex[i].Hit = True
+                                queue.append(self.vertex[i])
+                                edges[i] = finder
+            return []
+        else:
+            raise Exception('Indexes are out of range!') 
