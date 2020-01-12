@@ -78,6 +78,27 @@ class ls2_test(unittest.TestCase):
         self.assertEqual(new_graph.m_adjacency[0][2], 0)
         self.assertEqual(new_graph.m_adjacency[2][0], 0)
 
+    def test_find_way_one_edge(self):
+        new_graph = SimpleGraph(5)
+
+        new_graph.AddVertex(randint(0, 100))
+        new_graph.AddVertex(randint(0, 100))
+        new_graph.AddVertex(randint(0, 100))
+        new_graph.AddVertex(randint(0, 100))
+        new_graph.AddVertex(randint(0, 100))
+        new_graph.AddVertex(randint(0, 100))
+
+        new_graph.AddEdge(0, 1)
+        new_graph.AddEdge(1, 2)
+        new_graph.AddEdge(1, 3)
+        new_graph.AddEdge(3, 2)
+        new_graph.AddEdge(0, 2)
+
+        way_indexes = []
+        for vertex in new_graph.BreadthFirstSearch(0, 2):
+            way_indexes.append(new_graph.vertex.index(vertex))
+        self.assertEqual(way_indexes, [0, 2])
+
 
     def tearDown(self):
         pass
